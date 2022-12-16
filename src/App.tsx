@@ -14,7 +14,11 @@ function App() {
 
 	return (
 		<div className='app'>
-			<Navbar />
+			<Navbar
+				setMoviesList={setMoviesList}
+				setLoading={setLoading}
+				setError={setError}
+			/>
 			<Router>
 				<Routes>
 					<Route

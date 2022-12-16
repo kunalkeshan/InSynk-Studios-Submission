@@ -47,9 +47,17 @@ const Home: FC<HomeProps> = ({
 	}, []);
 
 	if (loading) {
-		return <div className='home__container'></div>;
+		return (
+			<div className='home__container'>
+				<p className='container'>Loading...</p>
+			</div>
+		);
 	} else if (error) {
-		return <div className='home__container'></div>;
+		return (
+			<div className='home__container'>
+				<p className='container'>Error. Try Again.</p>
+			</div>
+		);
 	} else {
 		return (
 			<>

@@ -3,6 +3,7 @@
 **Table of Contents**:
 
 - [Getting Started](#getting-started)
+- [License](#license)
 
 ## Getting Started
 

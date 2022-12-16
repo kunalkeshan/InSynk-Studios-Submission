@@ -9,12 +9,14 @@ export const fetchLatestMovies = async () => {
 	const response = await fetch(
 		`${THEMOVIESDB_ENDPOINT}/movie/popular?api_key=${THEMOVIESDB_API_KEY}`
 	);
-	return response;
+	const data = await response.json();
+	return data;
 };
 
 export const searchMovies = async (query: string) => {
 	const response = await fetch(
 		`${THEMOVIESDB_ENDPOINT}/search/movie?api_key=${THEMOVIESDB_API_KEY}&query=${query}`
 	);
-	return response;
+	const data = await response.json();
+	return data;
 };

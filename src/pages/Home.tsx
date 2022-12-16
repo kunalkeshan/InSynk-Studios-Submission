@@ -27,6 +27,7 @@ const Home: FC<HomeProps> = ({
 	setError,
 }) => {
 	const [open, setOpen] = useState<boolean>(false);
+	const [selectedMovie, setSelectedMovie] = useState<number | null>(null);
 
 	useEffect(() => {
 		const handleFetchMovies = async () => {
@@ -51,16 +52,29 @@ const Home: FC<HomeProps> = ({
 		return <div className='home__container'></div>;
 	} else {
 		return (
-			<div className='home__container'>
-				<div className='container'>
-					{moviesList instanceof Array &&
-						moviesList?.length > 0 &&
-						moviesList?.map((movie, index) => (
-							<MovieCard key={index} {...movie} />
-						))}
+			<>
+				<div className='home__container'>
+					<div className='container'>
+						{moviesList instanceof Array &&
+							moviesList?.length > 0 &&
+							moviesList?.map((movie) => (
+								<MovieCard
+									key={movie.id}
+									{...movie}
+									setOpen={setOpen}
+									setId={setSelectedMovie}
+								/>
+							))}
+					</div>
 				</div>
-				<MovieModal />
-			</div>
+				<MovieModal
+					open={open}
+					setOpen={setOpen}
+					movies={moviesList}
+					id={selectedMovie}
+					setId={setSelectedMovie}
+				/>
+			</>
 		);
 	}
 };

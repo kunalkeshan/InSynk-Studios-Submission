@@ -8,17 +8,27 @@ import { THEMOVIESDB_IMG_ENDPOINT } from '../../config';
 import '../../css/MovieCard.css';
 
 interface MovieCardProps
-	extends Pick<Movie, 'poster_path' | 'title' | 'vote_average'> {}
+	extends Pick<Movie, 'poster_path' | 'title' | 'vote_average' | 'id'> {
+	setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	setId: React.Dispatch<React.SetStateAction<number | null>>;
+}
 
 const MovieCard: FC<MovieCardProps> = ({
 	poster_path,
 	title,
 	vote_average,
+	id,
+	setOpen,
+	setId,
 }) => {
-	console.log(`${THEMOVIESDB_IMG_ENDPOINT}${poster_path}`);
-
 	return (
-		<div className='movie__card'>
+		<div
+			className='movie__card'
+			onClick={() => {
+				setOpen(true);
+				setId(id);
+			}}
+		>
 			<div
 				className='movie__poster'
 				style={{

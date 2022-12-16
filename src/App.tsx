@@ -1,5 +1,5 @@
 // Dependencies
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from './components/layouts/Footer';
 import Navbar from './components/layouts/Navbar';
@@ -8,12 +8,28 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 
 function App() {
+	const [moviesList, setMoviesList] = useState<Movies | null>(null);
+	const [loading, setLoading] = useState<boolean>(false);
+	const [error, setError] = useState<boolean>(false);
+
 	return (
 		<div className='app'>
 			<Navbar />
 			<Router>
 				<Routes>
-					<Route path='/' element={<Home />} />
+					<Route
+						path='/'
+						element={
+							<Home
+								moviesList={moviesList}
+								setMoviesList={setMoviesList}
+								loading={loading}
+								error={error}
+								setLoading={setLoading}
+								setError={setError}
+							/>
+						}
+					/>
 					<Route path='*' element={<NotFound />} />
 				</Routes>
 			</Router>
